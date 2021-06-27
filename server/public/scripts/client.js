@@ -3,7 +3,7 @@ $(document).ready( onReady );
 function onReady(){
     console.log('hi');
 
-    $('#submit').on('click', getCalculationToServer);
+    $('#submit').on('click', postCalculationToServer);
     $('.operator').on('click', assignOperator);
 }
 
@@ -14,7 +14,7 @@ function assignOperator(){
 }
 // let operator = $(this).data('id');
 
-function getCalculationToServer(){
+function postCalculationToServer(){
     //get input values
     let numberA = $('#numberA').val();
     let numberB = $('#numberB').val();
@@ -36,7 +36,9 @@ function getCalculationToServer(){
             answer: answer,
         }//becomes req.body on the server
     })
-    returnServerCalc();
+    console.log('in post')
+
+  returnServerCalc();
 }
 
 function returnServerCalc(){
@@ -45,7 +47,7 @@ function returnServerCalc(){
         url: '/calculations',
     })
         .then(function (response) { // The `response` is the result of AJAX request
-            console.log('Response:', response);
+            console.log('GET Response:', response);
             // #TODO - append to the DOM
             //#TODO renderCalculations(response);
           })
