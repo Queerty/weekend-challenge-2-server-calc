@@ -3,8 +3,9 @@ $(document).ready( onReady );
 function onReady(){
     console.log('hi');
 
-    $('#submit').on('click', postCalculationToServer);
+    $('#Submit').on('click', postCalculationToServer);
     $('.operator').on('click', assignOperator);
+    $('#clear').on('click', clearInputs);
 }
 
 let operator;
@@ -14,6 +15,9 @@ function assignOperator(){
 }
 // let operator = $(this).data('id');
 
+function clearInputs(){
+  $('input').val('');
+};
 function postCalculationToServer(){
     //get input values
     let numberA = $('#numberA').val();
@@ -36,22 +40,48 @@ function postCalculationToServer(){
             answer: answer,
         }//becomes req.body on the server
     })
-    console.log('in post')
-
-  returnServerCalc();
+    .then(function(response){
+      returnServerCalc();
+    })
+    .catch(function(err){
+      console.log('Error,', err);
+    })
+    $('#numberA').val('');
+    $('#numberB').val('');
 }
 
-function returnServerCalc(){
+function returnServerCalc(response){
     $.ajax({
         method: 'GET',
-        url: '/calculations',
+        url: '/calculations'
     })
         .then(function (response) { // The `response` is the result of AJAX request
             console.log('GET Response:', response);
             // #TODO - append to the DOM
-            //#TODO renderCalculations(response);
+           renderCalculations(response);
           })
           .catch(function (error) { // The error is a response from the server from our AJAX request
             console.log('Error!', error)
           });
         };
+
+
+
+function renderCalculations(calculationArray){
+  // $('#history').empty();
+console.log('in renderCalculations');
+  for (let calculation of calculationArray){
+    $('#currentAnswer').empty();
+    $('#currentAnswer').append(`Answer: ${calculationArray[calculationArray.length-1].answer}`);
+    $('#history').append(`
+    <li>
+    ${calculation.number1}<span></span>
+    ${calculation.operator}<span></span>
+    ${calculation.number2}<span></span>
+    =
+    ${calculation.answer}<span></span>
+    </li>
+    `)
+    
+  }
+};

@@ -18,17 +18,11 @@ let calculationArray = [];//history
 //assess operator
 //based on operator cal assign result to req.body.answer
 //then pushed to the array
-// let calcOutputArray = [];
-
-// let operatorAnswer;
 
 app.post('/calculations', (req, res) => {
     console.log('in post for calculations', req.body);
     let inputValues= req.body;
    calculateAnswer(inputValues);
-   //add it to our history array
-   
-    
     // performOperation();
     // console.log(operatorAnswer);
     console.log('all of the inputs', calculationArray);
@@ -42,17 +36,22 @@ app.post('/calculations', (req, res) => {
 
 function calculateAnswer(inputValues){//name function
 
-    if(inputValues.operator == "plusBtn"){
+    if(inputValues.operator == "+"){
    inputValues.answer= Number(inputValues.number1) + Number(inputValues.number2)
-    }else if (inputValues.operator == minusBtn){
-        operatorAnswer= inputValues.number1 - inputValues.number2;
-    }else console.log('other')
+    }else if (inputValues.operator == "-"){
+        inputValues.answer= inputValues.number1 - inputValues.number2;
+    }else if (inputValues.operator == "x"){
+        inputValues.answer= inputValues.number1 * inputValues.number2;
+    }else if (inputValues.operator == "÷"){
+        inputValues.answer = inputValues.number1/inputValues.number2;
+    }else console.log('error')
     //division 
     //multiplication
     
-    operatorAnswer = inputValues.answer
-    console.log(operatorAnswer);
-    return calculationArray.push(inputValues);
+    // operatorAnswer = inputValues.answer
+    console.log(inputValues.answer);
+    calculationArray.push(inputValues);
+    return calculationArray
 
     
 };
@@ -69,34 +68,12 @@ function calculateAnswer(inputValues){//name function
 //send that whole array
 //for history template literal $(`firstNumber) + $(`)
 
-// function calculateAnswer(){//name function
-
-//     if(req.body.operator == "plusBtn"){
-//    operatorAnswer= Number(numberA) + Number(numberB)
-//     }else if (req.body.operator == minusBtn){
-//         operatorAnswer= Number(numberA) - Number(numberB)
-//     }else if//division
-//     //multiplication
-//     return console.log(operatorAnswer)
-// }push answer after flow control into array
-//end function performOperation
-
 
 //GET `/calculations` array of calc object info
-app.get('/calculations', (req, res) => {
+app.get('/calculations', function(req,res) {
     console.log('Request method:', req.method);
     console.log('Request for /calculations was made!');
-  
     //send response back
     res.send(calculationArray);//sends back array
-})//GET function done
+});//GET function done
 
-
-// function addNumbers(){
-//     let additionOutput='';
-// additionOutput= Number(calculationArray.number1) + Number(calculationArray.number2);
-// calcOutputArray.push(additionOutput);
-// console.log(additionOutput);
-// };
-// console.log(addNumbers);
-// console.log(calcOutputArray);

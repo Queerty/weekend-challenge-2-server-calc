@@ -16,21 +16,23 @@
         <h1> Server Side Calculator </h1>
     </header> 
     <main>
-        <form>
+        <form id="inputForm">
             <input id= 'numberA' placeholder='number'>
-            <button type="button" class="operator" data-id="plusBtn">+</button>
-            <button type="button" class="operator" data-id="minusBtn">-</button>
-            <button type="button" class="operator" data-id="multiplyBtn">x</button>
-            <button type="button" class="operator" data-id="divideBtn">%</button>
+            <button type="button" class="operator" data-id="+">+</button>
+            <button type="button" class="operator" data-id="-">-</button>
+            <button type="button" class="operator" data-id="x">x</button>
+            <button type="button" class="operator" data-id="÷">÷</button>
             <input id= 'numberB' placeholder='number'>
-            <button type="button" id="submit">=</button>
+            <button type="button" id="Submit">=</button>
             <button type="button" id="clear">C</button>
         </form>
 
 
 
-        <section id="currentAnswer">"answer"</section>
-        <section id="history">past calculations</section>
+        <section id="currentAnswer">Answer:</section>
+        <section><ul id= "history">
+
+        </ul></section>
     </main>
 </body>
 </html>
