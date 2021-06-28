@@ -2,9 +2,7 @@ $(document).ready( onReady );
 
 function onReady(){
     console.log('hi');
-    
-    renderCalculations();
-    
+        
     $('#Submit').on('click', postCalculationToServer);
     $('.operator').on('click', assignOperator);
     $('#clear').on('click', clearInputs);
