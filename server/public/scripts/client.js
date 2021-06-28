@@ -68,7 +68,7 @@ function returnServerCalc(response){
 
 
 function renderCalculations(calculationArray){
-  // $('#history').empty();
+  $('#history').empty();
 console.log('in renderCalculations');
   for (let calculation of calculationArray){
     $('#currentAnswer').empty();
