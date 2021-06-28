@@ -63,11 +63,8 @@ function calculateAnswer(inputValues){//name function
 
 //Need to perform calculations on server side//instead of looping through array- right when I receive
 //then send back (get) array
-//server one app.post one app.get
 //set up post- sets and answer- then throws in array
 //send that whole array
-//for history template literal $(`firstNumber) + $(`)
-
 
 //GET `/calculations` array of calc object info
 app.get('/calculations', function(req,res) {
